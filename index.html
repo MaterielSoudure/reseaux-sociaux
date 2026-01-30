@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matériel Soudure - Nos Réseaux Sociaux</title>
+    <link rel="icon" href="MS-fav.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2vh 4vw;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(223, 0, 0, 0.4) 0%, rgba(223, 0, 0, 0.2) 40%, transparent 70%);
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            height: auto;
+            max-height: 95vh;
+            background: #fff;
+            border-radius: clamp(20px, 3vh, 30px);
+            padding: clamp(25px, 3.5vh, 40px) clamp(25px, 4vw, 35px);
+            box-shadow: 0 20px 60px rgba(223, 0, 0, 0.5), 0 0 100px rgba(223, 0, 0, 0.3);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            margin-bottom: clamp(10px, 1.5vh, 15px);
+        }
+
+        .logo img {
+            width: auto;
+            height: clamp(50px, 6vh, 70px);
+            max-width: 80%;
+            object-fit: contain;
+        }
+
+        h1 {
+            color: #000;
+            font-size: clamp(24px, 4vh, 30px);
+            margin-bottom: clamp(6px, 1vh, 10px);
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            color: #DF0000;
+            font-size: clamp(15px, 2.3vh, 17px);
+            margin-bottom: clamp(18px, 2.5vh, 28px);
+            font-weight: 600;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(10px, 1.5vh, 14px);
+            flex: 0 1 auto;
+            overflow: visible;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            padding: clamp(13px, 2vh, 16px) clamp(18px, 3vw, 22px);
+            background: #fff;
+            border: 2px solid #e0e0e0;
+            border-radius: clamp(10px, 1.5vh, 14px);
+            text-decoration: none;
+            color: #000;
+            font-weight: 600;
+            font-size: clamp(14px, 2vh, 16px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(223, 0, 0, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .social-link:hover::before {
+            left: 100%;
+        }
+
+        .social-link:hover {
+            border-color: #DF0000;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(223, 0, 0, 0.2);
+        }
+
+        .social-icon {
+            width: clamp(26px, 3.5vh, 30px);
+            height: clamp(26px, 3.5vh, 30px);
+            margin-right: clamp(12px, 2vw, 15px);
+            flex-shrink: 0;
+            object-fit: contain;
+        }
+
+        .social-text {
+            flex-grow: 1;
+            text-align: left;
+            line-height: 1.2;
+        }
+
+        .social-handle {
+            color: #666;
+            font-size: clamp(11px, 1.6vh, 13px);
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .footer {
+            margin-top: clamp(15px, 2vh, 20px);
+            padding-top: clamp(12px, 1.8vh, 18px);
+            border-top: 2px solid #f0f0f0;
+            flex-shrink: 0;
+        }
+
+        .footer-text {
+            color: #666;
+            font-size: clamp(11px, 1.6vh, 13px);
+            line-height: 1.4;
+        }
+
+        .highlight {
+            color: #DF0000;
+            font-weight: 600;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .social-link {
+            animation: fadeIn 0.6s ease backwards;
+        }
+
+        .social-link:nth-child(1) { animation-delay: 0.1s; }
+        .social-link:nth-child(2) { animation-delay: 0.2s; }
+        .social-link:nth-child(3) { animation-delay: 0.3s; }
+        .social-link:nth-child(4) { animation-delay: 0.4s; }
+        .social-link:nth-child(5) { animation-delay: 0.5s; }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            body {
+                padding: 1vh 3vw;
+            }
+            
+            .container {
+                padding: clamp(12px, 2vh, 20px) clamp(15px, 3vw, 25px);
+                border-radius: 18px;
+            }
+        }
+
+        @media (max-height: 700px) {
+            .logo img {
+                height: clamp(40px, 5vh, 50px);
+            }
+            
+            .logo {
+                margin-bottom: 5px;
+            }
+            
+            h1 {
+                font-size: clamp(18px, 3vh, 24px);
+                margin-bottom: 3px;
+            }
+            
+            .subtitle {
+                font-size: clamp(12px, 1.8vh, 14px);
+                margin-bottom: 8px;
+            }
+            
+            .footer {
+                margin-top: 8px;
+                padding-top: 8px;
+            }
+            
+            .social-link {
+                padding: 9px 14px;
+            }
+            
+            .social-links {
+                gap: 5px;
+            }
+        }
+
+        @media (max-height: 600px) {
+            .container {
+                padding: 10px 20px;
+                max-height: 98vh;
+            }
+            
+            .logo {
+                margin-bottom: 3px;
+            }
+            
+            .logo img {
+                height: clamp(35px, 4.5vh, 45px);
+            }
+            
+            h1 {
+                margin-bottom: 2px;
+            }
+            
+            .subtitle {
+                margin-bottom: 6px;
+            }
+            
+            .footer-text {
+                font-size: 10px;
+            }
+            
+            .social-link {
+                padding: 8px 12px;
+            }
+        }
+
+        @media (orientation: landscape) and (max-height: 500px) {
+            body {
+                padding: 2vh 2vw;
+            }
+            
+            body::before {
+                width: 90%;
+                height: 90%;
+            }
+            
+            .container {
+                max-width: 95vw;
+                max-height: 96vh;
+                padding: 2vh 3vw;
+                display: grid;
+                grid-template-columns: auto 1fr;
+                grid-template-rows: auto auto 1fr auto;
+                gap: 1vh 2vw;
+            }
+            
+            .logo {
+                grid-column: 1;
+                grid-row: 1;
+                margin: 0;
+            }
+            
+            .logo img {
+                height: 35px;
+            }
+            
+            h1 {
+                grid-column: 2;
+                grid-row: 1;
+                font-size: 18px;
+                margin: 0;
+                text-align: left;
+                align-self: center;
+            }
+            
+            .subtitle {
+                grid-column: 1 / -1;
+                grid-row: 2;
+                font-size: 12px;
+                margin: 0;
+            }
+            
+            .social-links {
+                grid-column: 1 / -1;
+                grid-row: 3;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 1vh 1vw;
+                align-content: start;
+            }
+            
+            .social-link {
+                padding: 1vh 1.5vw;
+                font-size: 13px;
+            }
+            
+            .social-icon {
+                width: 24px;
+                height: 24px;
+                margin-right: 10px;
+            }
+            
+            .social-handle {
+                font-size: 10px;
+            }
+            
+            .footer {
+                grid-column: 1 / -1;
+                grid-row: 4;
+                margin-top: 1vh;
+                padding-top: 1vh;
+            }
+            
+            .footer-text {
+                font-size: 10px;
+            }
+        }
+        
+        @media (orientation: landscape) and (max-height: 400px) {
+            .container {
+                grid-template-rows: auto 1fr auto;
+            }
+            
+            .subtitle {
+                display: none;
+            }
+            
+            .logo img {
+                height: 30px;
+            }
+            
+            h1 {
+                font-size: 16px;
+            }
+            
+            .social-links {
+                grid-row: 2;
+            }
+            
+            .footer {
+                grid-row: 3;
+                padding-top: 0.5vh;
+                margin-top: 0.5vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="MS-logo.png" alt="Logo Matériel Soudure">
+        </div>
+
+        <p class="subtitle">Suivez-nous sur les réseaux !</p>
+
+        <div class="social-links">
+            <a href="https://www.facebook.com/materielsoudure" class="social-link" target="_blank" rel="noopener">
+                <img class="social-icon" src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png" alt="Facebook">
+                <div class="social-text">
+                    <div>Facebook</div>
+                    <div class="social-handle">@materielsoudure</div>
+                </div>
+            </a>
+
+            <a href="https://www.instagram.com/materiel_soudure" class="social-link" target="_blank" rel="noopener">
+                <img class="social-icon" src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="Instagram">
+                <div class="social-text">
+                    <div>Instagram</div>
+                    <div class="social-handle">@materiel_soudure</div>
+                </div>
+            </a>
+
+            <a href="https://www.youtube.com/@materiel-soudure" class="social-link" target="_blank" rel="noopener">
+                <img class="social-icon" src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg" alt="YouTube">
+                <div class="social-text">
+                    <div>YouTube</div>
+                    <div class="social-handle">@materiel-soudure</div>
+                </div>
+            </a>
+
+            <a href="https://www.tiktok.com/@materiel_soudure" class="social-link" target="_blank" rel="noopener">
+                <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#25F4EE" d="M9.37,23.5a7.468,7.468,0,0,1,0-14.936.537.537,0,0,1,.538.5v3.8a.542.542,0,0,1-.5.5,2.671,2.671,0,1,0,2.645,2.669.432.432,0,0,1,0-.05V1a.5.5,0,0,1,.5-.5h3.787a.5.5,0,0,1,.5.5A4.759,4.759,0,0,0,21.59,5.76a.5.5,0,0,1,.5.5L22.1,10a.533.533,0,0,1-.519.515,9.427,9.427,0,0,1-4.741-1.268v6.789A7.476,7.476,0,0,1,9.37,23.5Z"/>
+                    <path fill="#FE2C55" d="M23.5,6.5a.5.5,0,0,0-.5-.5,4.759,4.759,0,0,1-4.759-4.759A.5.5,0,0,0,17.741.5H13.954a.5.5,0,0,0-.5.5V15.98a.432.432,0,0,0,0,.05,2.671,2.671,0,1,1-2.645-2.669.542.542,0,0,0,.5-.5v-3.8a.537.537,0,0,0-.538-.5,7.468,7.468,0,0,0,0,14.936,7.476,7.476,0,0,0,7.467-7.467V9.246A9.427,9.427,0,0,0,22.982,10.5.533.533,0,0,0,23.5,10Z"/>
+                    <path fill="#000000" d="M17.741,1A.5.5,0,0,1,18.241,1.5,4.759,4.759,0,0,0,23,6.259a.5.5,0,0,1,.5.5L23.5,10a.533.533,0,0,1-.519.515,9.427,9.427,0,0,1-4.741-1.268v6.789a7.476,7.476,0,0,1-7.467,7.467,7.468,7.468,0,0,1,0-14.936.537.537,0,0,1,.538.5v3.8a.542.542,0,0,1-.5.5,2.671,2.671,0,1,0,2.645,2.669.432.432,0,0,1,0-.05V1a.5.5,0,0,1,.5-.5Z"/>
+                </svg>
+                <div class="social-text">
+                    <div>TikTok</div>
+                    <div class="social-handle">@materiel_soudure</div>
+                </div>
+            </a>
+
+            <a href="https://www.linkedin.com/company/materiel-soudure" class="social-link" target="_blank" rel="noopener">
+                <img class="social-icon" src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn">
+                <div class="social-text">
+                    <div>LinkedIn</div>
+                    <div class="social-handle">Matériel Soudure</div>
+                </div>
+            </a>
+        </div>
+
+        <div class="footer">
+            <p class="footer-text">
+                Restez connectés pour découvrir nos <span class="highlight">nouveautés</span>, 
+                <span class="highlight">conseils techniques</span> et <span class="highlight">offres exclusives</span> !
+            </p>
+        </div>
+    </div>
+</body>
+</html>
