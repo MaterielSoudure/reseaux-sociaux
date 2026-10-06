@@ -5,16 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matériel Soudure - Nos Réseaux Sociaux</title>
     <link rel="icon" href="MS-fav.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --night: #0c0614;
+            --card: #170c24;
+            --pumpkin: #FF7A00;
+            --ember: #FFB347;
+            --brand: #DF0000;
+            --violet: #7B2FF7;
+            --lilac: #b9a6d6;
+            --ink: #f5ecff;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            background:
+                radial-gradient(circle at 50% 8%, rgba(255, 122, 0, 0.25) 0, transparent 32%),
+                linear-gradient(160deg, #05020a 0%, var(--night) 55%, #1d0b2e 100%);
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -24,6 +36,7 @@
             position: relative;
         }
 
+        /* Halo violet derrière la carte */
         body::before {
             content: '';
             position: absolute;
@@ -32,10 +45,30 @@
             transform: translate(-50%, -50%);
             width: 80%;
             height: 80%;
-            background: radial-gradient(circle, rgba(223, 0, 0, 0.4) 0%, rgba(223, 0, 0, 0.2) 40%, transparent 70%);
+            background: radial-gradient(circle, rgba(123, 47, 247, 0.4) 0%, rgba(255, 122, 0, 0.18) 45%, transparent 70%);
             filter: blur(80px);
             pointer-events: none;
             z-index: 0;
+        }
+
+        /* Étincelles de soudure qui montent */
+        .sparks { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+        .sparks span {
+            position: absolute;
+            bottom: -10px;
+            left: var(--x);
+            width: var(--s, 4px);
+            height: var(--s, 4px);
+            border-radius: 50%;
+            background: var(--ember);
+            box-shadow: 0 0 8px 2px var(--pumpkin);
+            opacity: 0;
+            animation: rise var(--t, 8s) linear var(--d, 0s) infinite;
+        }
+        @keyframes rise {
+            0%   { transform: translate(0, 0); opacity: 0; }
+            10%  { opacity: 0.9; }
+            100% { transform: translate(var(--dx, 20px), -105vh); opacity: 0; }
         }
 
         .container {
@@ -43,10 +76,11 @@
             width: 100%;
             height: auto;
             max-height: 95vh;
-            background: #fff;
+            background: var(--card);
+            border: 2px solid var(--pumpkin);
             border-radius: clamp(20px, 3vh, 30px);
             padding: clamp(25px, 3.5vh, 40px) clamp(25px, 4vw, 35px);
-            box-shadow: 0 20px 60px rgba(223, 0, 0, 0.5), 0 0 100px rgba(223, 0, 0, 0.3);
+            box-shadow: 0 0 0 4px rgba(255, 122, 0, 0.12), 0 20px 60px rgba(123, 47, 247, 0.45), 0 0 90px rgba(255, 122, 0, 0.3);
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -55,19 +89,19 @@
             z-index: 1;
         }
 
-        .logo {
-            margin-bottom: clamp(10px, 1.5vh, 15px);
-        }
+
+        .logo { margin-bottom: clamp(10px, 1.5vh, 15px); }
 
         .logo img {
             width: auto;
             height: clamp(50px, 6vh, 70px);
             max-width: 80%;
             object-fit: contain;
+            filter: drop-shadow(0 0 14px rgba(255, 122, 0, 0.45));
         }
 
         h1 {
-            color: #000;
+            color: var(--ink);
             font-size: clamp(24px, 4vh, 30px);
             margin-bottom: clamp(6px, 1vh, 10px);
             font-weight: 700;
@@ -75,10 +109,14 @@
         }
 
         .subtitle {
-            color: #DF0000;
-            font-size: clamp(15px, 2.3vh, 17px);
+            font-family: 'Creepster', 'Segoe UI', cursive, sans-serif;
+            color: var(--pumpkin);
+            font-size: clamp(13px, 4.2vw, 21px);
+            letter-spacing: 1px;
+            white-space: nowrap;
             margin-bottom: clamp(18px, 2.5vh, 28px);
-            font-weight: 600;
+            font-weight: 400;
+            text-shadow: 0 0 14px rgba(255, 122, 0, 0.7), 2px 2px 0 #4a1a8f;
         }
 
         .social-links {
@@ -93,11 +131,11 @@
             display: flex;
             align-items: center;
             padding: clamp(13px, 2vh, 16px) clamp(18px, 3vw, 22px);
-            background: #fff;
-            border: 2px solid #e0e0e0;
+            background: #22123a;
+            border: 2px solid #3d2563;
             border-radius: clamp(10px, 1.5vh, 14px);
             text-decoration: none;
-            color: #000;
+            color: var(--ink);
             font-weight: 600;
             font-size: clamp(14px, 2vh, 16px);
             transition: all 0.3s ease;
@@ -113,19 +151,33 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(223, 0, 0, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 122, 0, 0.22), transparent);
             transition: left 0.5s ease;
         }
 
-        .social-link:hover::before {
-            left: 100%;
+        .social-link:hover::before { left: 100%; }
+
+        .social-link:hover,
+        .social-link:focus-visible {
+            border-color: var(--pumpkin);
+            background: #2c1749;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 22px rgba(255, 122, 0, 0.35), 0 0 0 1px var(--pumpkin);
+            outline: none;
         }
 
-        .social-link:hover {
-            border-color: #DF0000;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(223, 0, 0, 0.2);
+        /* Petite chauve-souris qui apparaît au survol */
+        .social-link::after {
+            content: '🦇';
+            position: absolute;
+            right: 16px;
+            font-size: 18px;
+            opacity: 0;
+            transform: translateX(14px) scale(0.6);
+            transition: all 0.3s ease;
         }
+        .social-link:hover::after,
+        .social-link:focus-visible::after { opacity: 1; transform: translateX(0) scale(1); }
 
         .social-icon {
             width: clamp(26px, 3.5vh, 30px);
@@ -135,14 +187,10 @@
             object-fit: contain;
         }
 
-        .social-text {
-            flex-grow: 1;
-            text-align: left;
-            line-height: 1.2;
-        }
+        .social-text { flex-grow: 1; text-align: left; line-height: 1.2; }
 
         .social-handle {
-            color: #666;
+            color: var(--lilac);
             font-size: clamp(11px, 1.6vh, 13px);
             font-weight: 400;
             margin-top: 2px;
@@ -151,49 +199,39 @@
         .footer {
             margin-top: clamp(15px, 2vh, 20px);
             padding-top: clamp(12px, 1.8vh, 18px);
-            border-top: 2px solid #f0f0f0;
+            border-top: 2px dashed #4a2d78;
             flex-shrink: 0;
         }
 
         .footer-text {
-            color: #666;
+            color: var(--lilac);
             font-size: clamp(11px, 1.6vh, 13px);
             line-height: 1.4;
         }
 
-        .highlight {
-            color: #DF0000;
-            font-weight: 600;
-        }
+        .highlight { color: var(--pumpkin); font-weight: 600; }
 
-        /* Animations */
+        /* Entrée des liens */
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        .social-link {
-            animation: fadeIn 0.6s ease backwards;
-        }
-
+        .social-link { animation: fadeIn 0.6s ease backwards; }
         .social-link:nth-child(1) { animation-delay: 0.1s; }
         .social-link:nth-child(2) { animation-delay: 0.2s; }
         .social-link:nth-child(3) { animation-delay: 0.3s; }
         .social-link:nth-child(4) { animation-delay: 0.4s; }
         .social-link:nth-child(5) { animation-delay: 0.5s; }
 
+        @media (prefers-reduced-motion: reduce) {
+            .sparks span, .social-link { animation: none; }
+            .sparks { display: none; }
+        }
+
         /* Responsive */
         @media (max-width: 480px) {
-            body {
-                padding: 1vh 3vw;
-            }
-            
+            body { padding: 1vh 3vw; }
             .container {
                 padding: clamp(12px, 2vh, 20px) clamp(15px, 3vw, 25px);
                 border-radius: 18px;
@@ -201,79 +239,28 @@
         }
 
         @media (max-height: 700px) {
-            .logo img {
-                height: clamp(40px, 5vh, 50px);
-            }
-            
-            .logo {
-                margin-bottom: 5px;
-            }
-            
-            h1 {
-                font-size: clamp(18px, 3vh, 24px);
-                margin-bottom: 3px;
-            }
-            
-            .subtitle {
-                font-size: clamp(12px, 1.8vh, 14px);
-                margin-bottom: 8px;
-            }
-            
-            .footer {
-                margin-top: 8px;
-                padding-top: 8px;
-            }
-            
-            .social-link {
-                padding: 9px 14px;
-            }
-            
-            .social-links {
-                gap: 5px;
-            }
+            .logo img { height: clamp(40px, 5vh, 50px); }
+            .logo { margin-bottom: 5px; }
+            h1 { font-size: clamp(18px, 3vh, 24px); margin-bottom: 3px; }
+            .subtitle { margin-bottom: 8px; }
+            .footer { margin-top: 8px; padding-top: 8px; }
+            .social-link { padding: 9px 14px; }
+            .social-links { gap: 5px; }
         }
 
         @media (max-height: 600px) {
-            .container {
-                padding: 10px 20px;
-                max-height: 98vh;
-            }
-            
-            .logo {
-                margin-bottom: 3px;
-            }
-            
-            .logo img {
-                height: clamp(35px, 4.5vh, 45px);
-            }
-            
-            h1 {
-                margin-bottom: 2px;
-            }
-            
-            .subtitle {
-                margin-bottom: 6px;
-            }
-            
-            .footer-text {
-                font-size: 10px;
-            }
-            
-            .social-link {
-                padding: 8px 12px;
-            }
+            .container { padding: 10px 20px; max-height: 98vh; }
+            .logo { margin-bottom: 3px; }
+            .logo img { height: clamp(35px, 4.5vh, 45px); }
+            h1 { margin-bottom: 2px; }
+            .subtitle { margin-bottom: 6px; }
+            .footer-text { font-size: 10px; }
+            .social-link { padding: 8px 12px; }
         }
 
         @media (orientation: landscape) and (max-height: 500px) {
-            body {
-                padding: 2vh 2vw;
-            }
-            
-            body::before {
-                width: 90%;
-                height: 90%;
-            }
-            
+            body { padding: 2vh 2vw; }
+            body::before { width: 90%; height: 90%; }
             .container {
                 max-width: 95vw;
                 max-height: 96vh;
@@ -283,33 +270,10 @@
                 grid-template-rows: auto auto 1fr auto;
                 gap: 1vh 2vw;
             }
-            
-            .logo {
-                grid-column: 1;
-                grid-row: 1;
-                margin: 0;
-            }
-            
-            .logo img {
-                height: 35px;
-            }
-            
-            h1 {
-                grid-column: 2;
-                grid-row: 1;
-                font-size: 18px;
-                margin: 0;
-                text-align: left;
-                align-self: center;
-            }
-            
-            .subtitle {
-                grid-column: 1 / -1;
-                grid-row: 2;
-                font-size: 12px;
-                margin: 0;
-            }
-            
+            .logo { grid-column: 1; grid-row: 1; margin: 0; }
+            .logo img { height: 35px; }
+            h1 { grid-column: 2; grid-row: 1; font-size: 18px; margin: 0; text-align: left; align-self: center; }
+            .subtitle { grid-column: 1 / -1; grid-row: 2; margin: 0; }
             .social-links {
                 grid-column: 1 / -1;
                 grid-row: 3;
@@ -318,70 +282,41 @@
                 gap: 1vh 1vw;
                 align-content: start;
             }
-            
-            .social-link {
-                padding: 1vh 1.5vw;
-                font-size: 13px;
-            }
-            
-            .social-icon {
-                width: 24px;
-                height: 24px;
-                margin-right: 10px;
-            }
-            
-            .social-handle {
-                font-size: 10px;
-            }
-            
-            .footer {
-                grid-column: 1 / -1;
-                grid-row: 4;
-                margin-top: 1vh;
-                padding-top: 1vh;
-            }
-            
-            .footer-text {
-                font-size: 10px;
-            }
+            .social-link { padding: 1vh 1.5vw; font-size: 13px; }
+            .social-icon { width: 24px; height: 24px; margin-right: 10px; }
+            .social-handle { font-size: 10px; }
+            .footer { grid-column: 1 / -1; grid-row: 4; margin-top: 1vh; padding-top: 1vh; }
+            .footer-text { font-size: 10px; }
         }
-        
+
         @media (orientation: landscape) and (max-height: 400px) {
-            .container {
-                grid-template-rows: auto 1fr auto;
-            }
-            
-            .subtitle {
-                display: none;
-            }
-            
-            .logo img {
-                height: 30px;
-            }
-            
-            h1 {
-                font-size: 16px;
-            }
-            
-            .social-links {
-                grid-row: 2;
-            }
-            
-            .footer {
-                grid-row: 3;
-                padding-top: 0.5vh;
-                margin-top: 0.5vh;
-            }
+            .container { grid-template-rows: auto 1fr auto; }
+            .subtitle { display: none; }
+            .logo img { height: 30px; }
+            h1 { font-size: 16px; }
+            .social-links { grid-row: 2; }
+            .footer { grid-row: 3; padding-top: 0.5vh; margin-top: 0.5vh; }
         }
     </style>
 </head>
 <body>
+    <div class="sparks" aria-hidden="true">
+        <span style="--x:8%;  --s:4px; --t:9s;  --d:0s;  --dx:30px"></span>
+        <span style="--x:20%; --s:3px; --t:7s;  --d:2s;  --dx:-25px"></span>
+        <span style="--x:33%; --s:5px; --t:11s; --d:4s;  --dx:40px"></span>
+        <span style="--x:47%; --s:3px; --t:8s;  --d:1s;  --dx:-20px"></span>
+        <span style="--x:60%; --s:4px; --t:10s; --d:3s;  --dx:25px"></span>
+        <span style="--x:72%; --s:3px; --t:7.5s;--d:5s;  --dx:-35px"></span>
+        <span style="--x:84%; --s:5px; --t:12s; --d:0.5s;--dx:20px"></span>
+        <span style="--x:93%; --s:4px; --t:9s;  --d:6s;  --dx:-30px"></span>
+    </div>
+
     <div class="container">
         <div class="logo">
-            <img src="MS-logo.png" alt="Logo Matériel Soudure">
+            <img src="logo-detoure.png" alt="Logo Matériel Soudure">
         </div>
 
-        <p class="subtitle">Suivez-nous sur les réseaux !</p>
+        <p class="subtitle">🎃 Suivez-nous sur les réseaux ! 🎃</p>
 
         <div class="social-links">
             <a href="https://www.facebook.com/materielsoudure" class="social-link" target="_blank" rel="noopener">
@@ -404,7 +339,7 @@
                 <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path fill="#25F4EE" d="M9.37,23.5a7.468,7.468,0,0,1,0-14.936.537.537,0,0,1,.538.5v3.8a.542.542,0,0,1-.5.5,2.671,2.671,0,1,0,2.645,2.669.432.432,0,0,1,0-.05V1a.5.5,0,0,1,.5-.5h3.787a.5.5,0,0,1,.5.5A4.759,4.759,0,0,0,21.59,5.76a.5.5,0,0,1,.5.5L22.1,10a.533.533,0,0,1-.519.515,9.427,9.427,0,0,1-4.741-1.268v6.789A7.476,7.476,0,0,1,9.37,23.5Z"/>
                     <path fill="#FE2C55" d="M23.5,6.5a.5.5,0,0,0-.5-.5,4.759,4.759,0,0,1-4.759-4.759A.5.5,0,0,0,17.741.5H13.954a.5.5,0,0,0-.5.5V15.98a.432.432,0,0,0,0,.05,2.671,2.671,0,1,1-2.645-2.669.542.542,0,0,0,.5-.5v-3.8a.537.537,0,0,0-.538-.5,7.468,7.468,0,0,0,0,14.936,7.476,7.476,0,0,0,7.467-7.467V9.246A9.427,9.427,0,0,0,22.982,10.5.533.533,0,0,0,23.5,10Z"/>
-                    <path fill="#000000" d="M17.741,1A.5.5,0,0,1,18.241,1.5,4.759,4.759,0,0,0,23,6.259a.5.5,0,0,1,.5.5L23.5,10a.533.533,0,0,1-.519.515,9.427,9.427,0,0,1-4.741-1.268v6.789a7.476,7.476,0,0,1-7.467,7.467,7.468,7.468,0,0,1,0-14.936.537.537,0,0,1,.538.5v3.8a.542.542,0,0,1-.5.5,2.671,2.671,0,1,0,2.645,2.669.432.432,0,0,1,0-.05V1a.5.5,0,0,1,.5-.5Z"/>
+                    <path fill="#ffffff" d="M17.741,1A.5.5,0,0,1,18.241,1.5,4.759,4.759,0,0,0,23,6.259a.5.5,0,0,1,.5.5L23.5,10a.533.533,0,0,1-.519.515,9.427,9.427,0,0,1-4.741-1.268v6.789a7.476,7.476,0,0,1-7.467,7.467,7.468,7.468,0,0,1,0-14.936.537.537,0,0,1,.538.5v3.8a.542.542,0,0,1-.5.5,2.671,2.671,0,1,0,2.645,2.669.432.432,0,0,1,0-.05V1a.5.5,0,0,1,.5-.5Z"/>
                 </svg>
                 <div class="social-text">
                     <div>TikTok</div>
@@ -431,7 +366,7 @@
 
         <div class="footer">
             <p class="footer-text">
-                Restez connectés pour découvrir nos <span class="highlight">nouveautés</span>, 
+                Restez connectés pour découvrir nos <span class="highlight">nouveautés</span>,
                 <span class="highlight">conseils techniques</span> et <span class="highlight">offres exclusives</span> !
             </p>
         </div>
