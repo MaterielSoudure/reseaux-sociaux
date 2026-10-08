@@ -92,6 +92,9 @@
 
         .logo { margin-bottom: clamp(10px, 1.5vh, 15px); }
 
+        .logo a { display: inline-block; transition: transform 0.3s ease; }
+        .logo a:hover, .logo a:focus-visible { transform: scale(1.05); outline: none; }
+
         .logo img {
             width: auto;
             height: clamp(50px, 6vh, 70px);
@@ -349,7 +352,9 @@
 
     <div class="container">
         <div class="logo">
-            <img src="logo-detoure.png" alt="Logo Matériel Soudure">
+            <a href="https://materiel-soudure.fr" target="_blank" rel="noopener" aria-label="Visiter materiel-soudure.fr">
+                <img src="logo-detoure.png" alt="Logo Matériel Soudure">
+            </a>
         </div>
 
         <p class="subtitle">🎃 Suivez-nous sur les réseaux ! 🎃</p>
