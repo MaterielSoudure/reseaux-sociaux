@@ -100,6 +100,13 @@
             filter: drop-shadow(0 0 14px rgba(255, 122, 0, 0.45));
         }
 
+        .thanks {
+            color: var(--ink);
+            font-size: clamp(13px, 1.9vh, 15px);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
         h1 {
             color: var(--ink);
             font-size: clamp(24px, 4vh, 30px);
@@ -187,6 +194,32 @@
             object-fit: contain;
         }
 
+        .social-icon.emoji {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(20px, 2.8vh, 24px);
+            line-height: 1;
+        }
+
+        /* Bouton "Laisser un avis" mis en avant */
+        .social-link.review-link {
+            background: linear-gradient(135deg, var(--pumpkin), #ff9a2e);
+            border-color: var(--ember);
+            color: #1a0a00;
+            box-shadow: 0 0 18px rgba(255, 122, 0, 0.4);
+        }
+        .social-link.review-link .social-handle { color: rgba(26, 10, 0, 0.75); }
+        .social-link.review-link::before {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+        }
+        .social-link.review-link:hover,
+        .social-link.review-link:focus-visible {
+            background: linear-gradient(135deg, #ff8a1f, #ffb347);
+            border-color: #fff;
+            box-shadow: 0 8px 24px rgba(255, 122, 0, 0.6), 0 0 0 1px #fff;
+        }
+
         .social-text { flex-grow: 1; text-align: left; line-height: 1.2; }
 
         .social-handle {
@@ -223,6 +256,7 @@
         .social-link:nth-child(3) { animation-delay: 0.3s; }
         .social-link:nth-child(4) { animation-delay: 0.4s; }
         .social-link:nth-child(5) { animation-delay: 0.5s; }
+        .social-link:nth-child(6) { animation-delay: 0.6s; }
 
         @media (prefers-reduced-motion: reduce) {
             .sparks span, .social-link { animation: none; }
@@ -241,6 +275,7 @@
         @media (max-height: 700px) {
             .logo img { height: clamp(40px, 5vh, 50px); }
             .logo { margin-bottom: 5px; }
+            .thanks { font-size: 12px; margin-bottom: 2px; }
             h1 { font-size: clamp(18px, 3vh, 24px); margin-bottom: 3px; }
             .subtitle { margin-bottom: 8px; }
             .footer { margin-top: 8px; padding-top: 8px; }
@@ -251,6 +286,7 @@
         @media (max-height: 600px) {
             .container { padding: 10px 20px; max-height: 98vh; }
             .logo { margin-bottom: 3px; }
+            .thanks { font-size: 11px; margin-bottom: 1px; }
             .logo img { height: clamp(35px, 4.5vh, 45px); }
             h1 { margin-bottom: 2px; }
             .subtitle { margin-bottom: 6px; }
@@ -362,9 +398,18 @@
                     <div class="social-handle">Matériel Soudure</div>
                 </div>
             </a>
+
+            <a href="https://www.avis-verifies.com/avis-clients/materiel-soudure.fr" class="social-link review-link" target="_blank" rel="noopener">
+                <span class="social-icon emoji" aria-hidden="true">⭐</span>
+                <div class="social-text">
+                    <div>Laisser un avis</div>
+                    <div class="social-handle">Votre avis nous aide à progresser</div>
+                </div>
+            </a>
         </div>
 
         <div class="footer">
+            <p class="thanks">Merci d'avoir passé commande chez nous ! 🧡</p>
             <p class="footer-text">
                 Restez connectés pour découvrir nos <span class="highlight">nouveautés</span>,
                 <span class="highlight">conseils techniques</span> et <span class="highlight">offres exclusives</span> !
