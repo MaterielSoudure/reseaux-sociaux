@@ -26,12 +26,13 @@
             background:
                 radial-gradient(circle at 50% 8%, rgba(242, 140, 40, 0.25) 0, transparent 32%),
                 linear-gradient(160deg, #0a0503 0%, var(--night) 55%, #2a1408 100%);
-            height: 100vh;
+            min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 2vh 4vw;
-            overflow: hidden;
+            padding: max(2vh, 16px) 4vw;
+            overflow-x: hidden;
             position: relative;
         }
 
@@ -51,7 +52,7 @@
         }
 
         /* Feuilles d'automne qui tombent */
-        .leaves { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+        .leaves { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
         .leaves span {
             position: absolute;
             top: -40px;
@@ -72,7 +73,6 @@
             max-width: 500px;
             width: 100%;
             height: auto;
-            max-height: 95vh;
             background: var(--card);
             border: 2px solid var(--amber);
             border-radius: clamp(20px, 3vh, 30px);
@@ -279,7 +279,7 @@
 
         /* Responsive */
         @media (max-width: 480px) {
-            body { padding: 1vh 3vw; }
+            body { padding: 16px 3vw; }
             .container {
                 padding: clamp(12px, 2vh, 20px) clamp(15px, 3vw, 25px);
                 border-radius: 18px;
@@ -299,7 +299,7 @@
         }
 
         @media (max-height: 600px) {
-            .container { padding: 10px 20px; max-height: 98vh; }
+            .container { padding: 10px 20px; }
             .logo { margin-bottom: 3px; }
             .thanks { font-size: 11px; margin-bottom: 1px; }
             .logo img { height: clamp(35px, 4.5vh, 45px); }
@@ -314,7 +314,6 @@
             body::before { width: 90%; height: 90%; }
             .container {
                 max-width: 95vw;
-                max-height: 96vh;
                 padding: 2vh 3vw;
                 display: grid;
                 grid-template-columns: auto 1fr;
